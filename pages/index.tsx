@@ -10,6 +10,7 @@ const Home: React.FC = () => {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     tokenContext.saveToken(form.token)
+    setForm({ ...form, token: '' })
   }
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
