@@ -44,6 +44,7 @@ const Home: React.FC = () => {
         >
           <Input
             borderRadius="0.25rem 0 0 0.25rem"
+            type="password"
             name="token"
             value={form.token}
             onChange={handleInputChange}
