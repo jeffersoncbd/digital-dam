@@ -1,6 +1,14 @@
+import { Flex, Heading } from '@chakra-ui/core'
+
 const Home: React.FC = () => {
   return (
-    <h1>DigitalDam</h1>
+    <Flex
+      height="100vh"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Heading as="h1">DigitalDam</Heading>
+    </Flex>
   )
 }
 
