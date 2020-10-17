@@ -2,21 +2,16 @@ import React, { createContext, useState, useEffect, useContext } from 'react'
 import Axios from 'axios'
 import { DigitalOceanToken } from './DigitalOceanToken'
 import { useToast } from '@chakra-ui/core'
-
-interface Droplet {
-  id: number
-  name: string
-  status: string
-}
+import { DropletEntity } from '../entities/Droplet'
 
 interface UserDroplets {
-  droplets: Droplet[] | undefined
+  droplets: DropletEntity[] | undefined
 }
 
 export const UserDropletContext = createContext<UserDroplets | null>(null)
 
 const UserDropletsProvider: React.FC = ({ children }) => {
-  const [droplets, setDroplets] = useState<Droplet[] | undefined>()
+  const [droplets, setDroplets] = useState<DropletEntity[] | undefined>()
 
   const toast = useToast()
   const tokenContext = useContext(DigitalOceanToken)
