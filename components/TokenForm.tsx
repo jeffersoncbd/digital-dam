@@ -15,7 +15,14 @@ const TokenForm: React.FC = () => {
   }
 
   return tokenContext._token ? (
-    <Button marginTop={5} onClick={tokenContext.deleteToken}>
+    <Button
+      marginTop={5}
+      onClick={tokenContext.deleteToken}
+      textTransform="uppercase"
+      backgroundColor="red.500"
+      color="white"
+      _hover={{ backgroundColor: 'red.600' }}
+    >
       Excluir token
     </Button>
   ) : (
