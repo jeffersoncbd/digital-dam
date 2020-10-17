@@ -8,7 +8,7 @@ import Lamp from '../Lamp'
 import Axios from 'axios'
 
 interface DropletListProperties {
-  handleSelectDroplet?: (droplet: DropletEntity) => void
+  handleSelectDroplet?: (dropletId: number) => void
 }
 
 const DropletList: React.FC<DropletListProperties> = ({
@@ -42,16 +42,14 @@ const DropletList: React.FC<DropletListProperties> = ({
         }
       }
     }
-    if (tokenContext._token !== null) {
-      getDroplets()
-    }
-  }, [tokenContext._token])
+    getDroplets()
+  }, [])
 
   return (
     <Flex flexDirection="column" alignItems="center">
       <Heading>Droplets</Heading>
       {!droplets ? (
-        <Flex justifyContent="center">
+        <Flex marginTop={2} justifyContent="center">
           <Spinner size="xl" />
         </Flex>
       ) : (
@@ -62,7 +60,7 @@ const DropletList: React.FC<DropletListProperties> = ({
             marginTop={2}
             cursor={handleSelectDroplet ? 'pointer' : 'default'}
             onClick={() =>
-              handleSelectDroplet ? handleSelectDroplet(droplet) : null
+              handleSelectDroplet ? handleSelectDroplet(droplet.id) : null
             }
           >
             <Heading size="md" marginRight={2}>
