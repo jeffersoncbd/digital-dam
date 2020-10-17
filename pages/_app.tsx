@@ -4,11 +4,14 @@ import { AppProps } from 'next/app'
 
 import ThemeProvider from '../contexts/ThemeProvider'
 import DigitalOceanTokenProvider from '../contexts/DigitalOceanToken'
+import UserDropletsProvider from '../contexts/UserDroplets'
 
 const Application: NextPage<AppProps> = ({ Component, pageProps }) => (
   <ThemeProvider>
     <DigitalOceanTokenProvider>
-      <Component {...pageProps} />
+      <UserDropletsProvider>
+        <Component {...pageProps} />
+      </UserDropletsProvider>
     </DigitalOceanTokenProvider>
   </ThemeProvider>
 )
