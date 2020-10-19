@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Flex, Heading, Box } from '@chakra-ui/core'
 import TokenForm from '../components/TokenForm'
 import SwitchAutomation from '../components/automations/Switch'
+import { DigitalOceanToken } from '../contexts/DigitalOceanToken'
 
 const Home: React.FC = () => {
+  const tokenContext = useContext(DigitalOceanToken)
+
   return (
     <Flex
       width="full"
@@ -19,9 +22,11 @@ const Home: React.FC = () => {
 
       <TokenForm />
 
-      <Box marginTop={5}>
-        <SwitchAutomation />
-      </Box>
+      {tokenContext._token && (
+        <Box marginTop={5}>
+          <SwitchAutomation />
+        </Box>
+      )}
     </Flex>
   )
 }
