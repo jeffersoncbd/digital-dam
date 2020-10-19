@@ -62,7 +62,7 @@ const ShowDroplet: React.FC<ShowDropletProperties> = (properties) => {
         <Lamp status={droplet.status} />
       </Flex>
       <Text>
-        {droplet.vcpus} vCPUs - {droplet.memory}MB Memory
+        {droplet.vcpus} vCPUs - {Math.round(droplet.memory / 1000)}GB Memory
       </Text>
     </Flex>
   )
