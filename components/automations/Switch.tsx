@@ -15,6 +15,7 @@ const SwitchAutomation: React.FC = () => {
   const [showDroplets, setShowDroplets] = useState(false)
   const [startWork, setStartWork] = useState<string | null>(null)
   const [stopWork, setStopWork] = useState(false)
+  const [selectUpgrade, setSelectUpgrade] = useState(false)
   const [update, setUpdate] = useState(false)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -132,7 +133,7 @@ const SwitchAutomation: React.FC = () => {
 
   function handleButtonClick() {
     if (droplet.size_slug === 's-1vcpu-1gb' && !startWork && !stopWork) {
-      setStartWork('s-2vcpu-4gb')
+      setSelectUpgrade(true)
     }
     if (droplet.size_slug !== 's-1vcpu-1gb' && !startWork && !stopWork) {
       setStopWork(true)
@@ -176,8 +177,30 @@ const SwitchAutomation: React.FC = () => {
   return (
     <>
       <ShowDroplet droplet={droplet} />
+      {selectUpgrade && (
+        <Flex flexDirection="column">
+          <Button
+            marginTop={3}
+            onClick={() => {
+              setStartWork('s-2vcpu-4gb')
+              setSelectUpgrade(false)
+            }}
+          >
+            $20/mo
+          </Button>
+          <Button
+            marginTop={3}
+            onClick={() => {
+              setStartWork('s-4vcpu-8gb')
+              setSelectUpgrade(false)
+            }}
+          >
+            $40/mo
+          </Button>
+        </Flex>
+      )}
       <Button
-        isLoading={startWork !== null || stopWork}
+        isLoading={startWork !== null || stopWork || selectUpgrade}
         textTransform="uppercase"
         marginTop={5}
         size="lg"
