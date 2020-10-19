@@ -2,7 +2,8 @@ import React from 'react'
 import { Box } from '@chakra-ui/core'
 
 const colors = {
-  active: 'green.500'
+  active: 'green.500',
+  off: 'gray.400'
 }
 
 interface LampProperties {
