@@ -6,17 +6,17 @@ import Axios from 'axios'
 import { DigitalOceanToken } from '../../contexts/DigitalOceanToken'
 
 interface ShowDropletProperties {
-  dropletId: number
+  droplet: number | DropletEntity
 }
 
-const ShowDroplet: React.FC<ShowDropletProperties> = ({ dropletId }) => {
+const ShowDroplet: React.FC<ShowDropletProperties> = (properties) => {
   const toast = useToast()
   const tokenContext = useContext(DigitalOceanToken)
 
   const [droplet, setDroplet] = useState<DropletEntity>()
 
   useEffect(() => {
-    async function getDroplets() {
+    async function getDroplets(dropletId: number) {
       try {
         const response = await Axios.get(
           `https://api.digitalocean.com/v2/droplets/${dropletId}`,
@@ -38,8 +38,12 @@ const ShowDroplet: React.FC<ShowDropletProperties> = ({ dropletId }) => {
         }
       }
     }
-    getDroplets()
-  }, [])
+    if (typeof properties.droplet === 'number') {
+      getDroplets(properties.droplet)
+    } else {
+      setDroplet(properties.droplet)
+    }
+  }, [properties.droplet])
 
   if (droplet === undefined) {
     return (

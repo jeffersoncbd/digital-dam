@@ -1,6 +1,7 @@
 import React from 'react'
-import { Flex, Heading } from '@chakra-ui/core'
+import { Flex, Heading, Box } from '@chakra-ui/core'
 import TokenForm from '../components/TokenForm'
+import SwitchAutomation from '../components/automations/Switch'
 
 const Home: React.FC = () => {
   return (
@@ -17,6 +18,10 @@ const Home: React.FC = () => {
       </Heading>
 
       <TokenForm />
+
+      <Box marginTop={5}>
+        <SwitchAutomation />
+      </Box>
     </Flex>
   )
 }
