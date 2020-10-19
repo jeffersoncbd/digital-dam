@@ -46,7 +46,6 @@ const SwitchAutomation: React.FC = () => {
             headers: { Authorization: `Bearer ${tokenContext._token}` }
           }
         )
-        console.log(response.data.droplet.status)
         const newData = response.data.droplet
         if (droplet === undefined) {
           setDroplet(response.data.droplet)
@@ -56,6 +55,7 @@ const SwitchAutomation: React.FC = () => {
           newData.status !== droplet.status ||
           newData.size_slug !== droplet.size_slug
         ) {
+          console.log('Status do droplet atualizado')
           setDroplet(response.data.droplet)
         }
       } catch (error) {
@@ -78,11 +78,11 @@ const SwitchAutomation: React.FC = () => {
 
   useEffect(() => {
     if (dropletId) {
-      setInterval(() => {
+      setTimeout(() => {
         setUpdate(!update)
       }, 3000)
     }
-  }, [dropletId])
+  }, [dropletId, update])
 
   useEffect(() => {
     if (startWork) {
