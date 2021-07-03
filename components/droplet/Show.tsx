@@ -57,12 +57,15 @@ const ShowDroplet: React.FC<ShowDropletProperties> = (properties) => {
     <Flex flexDirection="column" alignItems="center">
       <Flex alignItems="center">
         <Heading size="md" marginRight={2}>
-          {droplet.name} - {droplet.size_slug}
+          {droplet.name}
         </Heading>
         <Lamp status={droplet.status} />
       </Flex>
       <Text>
         {droplet.vcpus} vCPUs - {Math.round(droplet.memory / 1000)}GB Memory
+      </Text>
+      <Text>
+        Slug: {droplet.size_slug}
       </Text>
     </Flex>
   )
