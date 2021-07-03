@@ -6,6 +6,12 @@ import Axios from 'axios'
 import { DigitalOceanToken } from '../../contexts/DigitalOceanToken'
 import { DropletEntity } from '../../entities/Droplet'
 
+const dropletSizes = [
+  { slug: 's-2vcpu-4gb', price: '$20/mo'  },
+  { slug: 's-4vcpu-8gb', price: '$40/mo'  },
+  { slug: 's-4vcpu-8gb-intel', price: '$48/mo - Intel'  },
+]
+
 const SwitchAutomation: React.FC = () => {
   const toast = useToast()
   const tokenContext = useContext(DigitalOceanToken)
@@ -179,24 +185,17 @@ const SwitchAutomation: React.FC = () => {
       <ShowDroplet droplet={droplet} />
       {selectUpgrade && (
         <Flex flexDirection="column">
-          <Button
-            marginTop={3}
-            onClick={() => {
-              setStartWork('s-2vcpu-4gb')
-              setSelectUpgrade(false)
-            }}
-          >
-            $20/mo
-          </Button>
-          <Button
-            marginTop={3}
-            onClick={() => {
-              setStartWork('s-4vcpu-8gb')
-              setSelectUpgrade(false)
-            }}
-          >
-            $40/mo
-          </Button>
+          {dropletSizes.map((size) => (
+            <Button
+              marginTop={3}
+              onClick={() => {
+                setStartWork(size.slug)
+                setSelectUpgrade(false)
+              }}
+            >
+              {size.price}
+            </Button>          
+          ))}
         </Flex>
       )}
       <Button
