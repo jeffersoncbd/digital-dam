@@ -57,7 +57,7 @@ const ShowDroplet: React.FC<ShowDropletProperties> = (properties) => {
     <Flex flexDirection="column" alignItems="center">
       <Flex alignItems="center">
         <Heading size="md" marginRight={2}>
-          {droplet.name}
+          {droplet.name} - {droplet.size_slug}
         </Heading>
         <Lamp status={droplet.status} />
       </Flex>
